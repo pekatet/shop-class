@@ -1,20 +1,18 @@
 import './App.css'
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
+import ItemModel from './ItemModel'
 
-const item1 = {
-  brand: 'Tiger of Sweden',
-  title: 'Leonard coat',
-  description: 'Minimalistic coat in cotton-blend',
-  descriptionFull: 'Men\'s minimalistic overcoat in cotton-blend. Features a stand-up collar, concealed front closure and single back vent. Slim fit with clean, straight shape. Above-knee length.',
-  price: 399,
-  currency: '£',
-}
+const item1 = new ItemModel(
+  'Tiger of Sweden',
+  'Leonard coat',
+  'Minimalistic coat in cotton-blend',
+  'Men\'s minimalistic overcoat in cotton-blend. Features a stand-up collar, concealed front closure and single back vent. Slim fit with clean, straight shape. Above-knee length.',
+  399,
+  '£',
+)
 
 class ShopItem extends React.Component {
-  constructor (props) {
-    super(props);
-  }
   render() {
     const item = this.props.item;
     return(
@@ -40,14 +38,7 @@ class ShopItem extends React.Component {
 }
 
 ShopItem.propTypes = {
-  item: PropTypes.shape({
-    brand: PropTypes.string,
-    title: PropTypes.string,
-    description: PropTypes.string,
-    descriptionFull: PropTypes.string,
-    price: PropTypes.number,
-    currency: PropTypes.string
-  }),
+  item: PropTypes.instanceOf(ItemModel)
 }
 
 function App () {
@@ -59,7 +50,7 @@ function App () {
         <div className='highlight-overlay'/>
       </div>
       <div className="window">
-        <ShopItem item={item1} test = "test!!!!"/>
+        <ShopItem item={item1}/>
       </div>
     </div>
   )
